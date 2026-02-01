@@ -1,27 +1,14 @@
-# Dockerfile for Rasa Chatbot
-
 FROM rasa/rasa:3.6.20-full
-
-# Set working directory
 WORKDIR /app
-
-# Copy files
 COPY . /app
 
-# Install dependencies
 USER root
-RUN pip install rasa-sdk pyyaml
+RUN pip install rasa-sdk supervisor
 
-# Make setup script executable
-RUN chmod +x setup_credentials.py
+# Copy supervisor config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Expose ports
+USER 1001
 EXPOSE 5005 5055
 
-# Switch back to rasa user
-USER 1001
-
-# Run setup script then start Rasa
-# This will configure credentials.yml with environment variables
-CMD python3 setup_credentials.py && \
-    rasa run --enable-api --cors "*" --port 5005
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

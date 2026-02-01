@@ -5,10 +5,11 @@ COPY . /app
 USER root
 RUN pip install rasa-sdk supervisor
 
+RUN rasa train
+USER 1001
+
 # Copy supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-USER 1001
-EXPOSE 5005 5055
-
+EXPOSE 5005
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

@@ -6,6 +6,8 @@ USER root
 RUN pip install rasa-sdk supervisor
 RUN pip install aiogram==2.25.2 --force-reinstall  # Now compatible
 
+RUN chmod +x /app/start.sh
+
 RUN rasa train
 USER 1001
 

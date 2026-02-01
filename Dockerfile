@@ -4,7 +4,10 @@ COPY . /app
 
 USER root
 RUN pip install rasa-sdk supervisor
-RUN pip install aiogram==2.25.2 aiohttp==3.9.5 --force-reinstall
+RUN pip install aiogram==2.25.2 --no-deps --force-reinstall  # Ignore dependency checks
+
+# Verify it didn't break rasa
+RUN rasa --version
 
 RUN rasa train
 USER 1001

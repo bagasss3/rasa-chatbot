@@ -1,0 +1,66 @@
+version: "3.1"
+
+# Language
+language: id
+
+# NLU Pipeline
+pipeline:
+  # Tokenizer - split by whitespace
+- name: WhitespaceTokenizer
+
+  # RegEx Feature untuk pattern matching (angka 1-5)
+- name: RegexFeaturizer
+  case_sensitive: false
+
+  # Lexical & Syntactic Features
+- name: LexicalSyntacticFeaturizer
+
+  # Count Vectors - Word level
+- name: CountVectorsFeaturizer
+  analyzer: word
+  min_ngram: 1
+  max_ngram: 2
+
+  # Count Vectors - Character level 
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+
+  # DIET Classifier - main intent classifier
+- name: DIETClassifier
+  epochs: 150
+  random_seed: 42
+  entity_recognition: true
+  constrain_similarities: true
+
+  # Entity Extractor
+- name: EntitySynonymMapper
+
+  # Fallback Classifier
+- name: FallbackClassifier
+  threshold: 0.7
+  ambiguity_threshold: 0.1
+
+# Policies untuk dialog management
+policies:
+  # Memoization - remember exact conversation paths
+- name: MemoizationPolicy
+  max_history: 5
+
+  # Rule Policy
+- name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "utter_fallback"
+
+  # UnexpecTED Intent Policy
+- name: UnexpecTEDIntentPolicy
+  max_history: 5
+  epochs: 100
+
+  # TED Policy
+- name: TEDPolicy
+  max_history: 5
+  epochs: 100
+  constrain_similarities: true
+assistant_id: 20260201-124625-flush-basis

@@ -1,0 +1,53 @@
+version: "3.1"
+
+rules:
+
+# ===== GREETING =====
+- rule: Sapa dan tampilkan menu saat user menyapa
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+# ===== PILIH MENU with ENTITY =====
+- rule: User memilih menu dengan angka
+  steps:
+    - intent: pilih_menu
+    - action: action_handle_menu
+
+# ===== KNOWLEDGE RULES =====
+- rule: Jawab apa itu stroke
+  steps:
+    - intent: apa_itu_stroke
+    - action: utter_apa_itu_stroke
+
+- rule: Jawab gejala stroke
+  steps:
+    - intent: gejala_stroke
+    - action: utter_gejala_stroke
+
+- rule: Jawab penyebab stroke
+  steps:
+    - intent: penyebab_stroke
+    - action: utter_penyebab_stroke
+
+- rule: Jawab pencegahan stroke
+  steps:
+    - intent: pencegahan_stroke
+    - action: utter_pencegahan_stroke
+
+- rule: Jawab penanganan stroke
+  steps:
+    - intent: penanganan_stroke
+    - action: utter_penanganan_stroke
+
+# ===== GOODBYE =====
+- rule: Ucapkan perpisahan
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+# ===== FALLBACK =====
+- rule: Fallback rule
+  steps:
+    - intent: nlu_fallback
+    - action: utter_fallback

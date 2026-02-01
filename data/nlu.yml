@@ -1,0 +1,232 @@
+version: "3.1"
+
+nlu:
+
+# ===== GREETING =====
+- intent: greet
+  examples: |
+    - halo
+    - hai
+    - hi
+    - selamat pagi
+    - selamat siang
+    - selamat sore
+    - permisi
+    - assalamualaikum
+    - salam
+    - hei
+    - hello
+
+# ===== PILIH MENU =====
+- intent: pilih_menu
+  examples: |
+    - [1](menu_number)
+    - [2](menu_number)
+    - [3](menu_number)
+    - [4](menu_number)
+    - [5](menu_number)
+    - [satu](menu_number)
+    - [dua](menu_number)
+    - [tiga](menu_number)
+    - [empat](menu_number)
+    - [lima](menu_number)
+    - nomor [1](menu_number)
+    - nomor [2](menu_number)
+    - nomor [3](menu_number)
+    - nomor [4](menu_number)
+    - nomor [5](menu_number)
+    - nomor [satu](menu_number)
+    - nomor [dua](menu_number)
+    - nomor [tiga](menu_number)
+    - nomor [empat](menu_number)
+    - nomor [lima](menu_number)
+    - pilihan [1](menu_number)
+    - pilihan [2](menu_number)
+    - pilihan [3](menu_number)
+    - pilihan [4](menu_number)
+    - pilihan [5](menu_number)
+    - saya pilih [1](menu_number)
+    - saya pilih [2](menu_number)
+    - saya pilih [3](menu_number)
+    - saya pilih [4](menu_number)
+    - saya pilih [5](menu_number)
+    - saya pilih [satu](menu_number)
+    - saya pilih [dua](menu_number)
+    - saya pilih [tiga](menu_number)
+    - menu [1](menu_number)
+    - menu [2](menu_number)
+    - menu [3](menu_number)
+    - menu [4](menu_number)
+    - menu [5](menu_number)
+    - angka [1](menu_number)
+    - angka [2](menu_number)
+    - angka [3](menu_number)
+    - yang [pertama](menu_number)
+    - yang [kedua](menu_number)
+    - yang [ketiga](menu_number)
+    - yang [keempat](menu_number)
+    - yang [kelima](menu_number)
+    - mau [1](menu_number)
+    - mau [2](menu_number)
+    - mau [3](menu_number)
+    - aku pilih [1](menu_number)
+    - aku mau [2](menu_number)
+    - [1](menu_number) aja
+    - [2](menu_number) dong
+
+# ===== LOOKUP TABLE for menu_number =====
+- lookup: menu_number
+  examples: |
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - satu
+    - dua
+    - tiga
+    - empat
+    - lima
+    - pertama
+    - kedua
+    - ketiga
+    - keempat
+    - kelima
+
+# ===== SYNONYM for menu_number =====
+- synonym: "1"
+  examples: |
+    - satu
+    - pertama
+    - 1
+
+- synonym: "2"
+  examples: |
+    - dua
+    - kedua
+    - 2
+
+- synonym: "3"
+  examples: |
+    - tiga
+    - ketiga
+    - 3
+
+- synonym: "4"
+  examples: |
+    - empat
+    - keempat
+    - 4
+
+- synonym: "5"
+  examples: |
+    - lima
+    - kelima
+    - 5
+
+# ===== APA ITU STROKE =====
+- intent: apa_itu_stroke
+  examples: |
+    - apa itu stroke
+    - stroke itu apa
+    - jelaskan stroke
+    - stroke apa
+    - pengertian stroke
+    - definisi stroke
+    - apa yang dimaksud stroke
+    - stroke adalah
+    - info stroke
+    - tentang stroke
+    - stroke itu seperti apa
+    - bisa jelaskan stroke
+
+# ===== GEJALA STROKE =====
+- intent: gejala_stroke
+  examples: |
+    - gejala stroke
+    - tanda stroke
+    - ciri ciri stroke
+    - apa gejala stroke
+    - tanda tanda stroke
+    - ciri stroke
+    - gejala stroke apa
+    - stroke gejalanya apa
+    - tandanya stroke
+    - gejala orang stroke
+    - gimana ciri stroke
+    - tanda orang kena stroke
+
+# ===== PENYEBAB STROKE =====
+- intent: penyebab_stroke
+  examples: |
+    - penyebab stroke
+    - kenapa bisa stroke
+    - alasan stroke
+    - faktor risiko stroke
+    - apa penyebab stroke
+    - stroke disebabkan apa
+    - kenapa orang stroke
+    - penyebabnya apa
+    - faktor stroke
+    - apa yang menyebabkan stroke
+    - stroke karena apa
+
+# ===== PENCEGAHAN STROKE =====
+- intent: pencegahan_stroke
+  examples: |
+    - cara mencegah stroke
+    - pencegahan stroke
+    - supaya tidak stroke
+    - menghindari stroke
+    - bagaimana mencegah stroke
+    - cara hindari stroke
+    - gimana biar gak stroke
+    - tips mencegah stroke
+    - cegah stroke
+    - mencegah stroke bagaimana
+    - agar tidak stroke
+    - supaya gak stroke
+
+# ===== PENANGANAN STROKE =====
+- intent: penanganan_stroke
+  examples: |
+    - cara menangani stroke
+    - penanganan stroke
+    - stroke harus bagaimana
+    - kalau kena stroke apa yang harus dilakukan
+    - pertolongan pertama stroke
+    - kalau stroke bagaimana
+    - tangani stroke
+    - stroke ditangani bagaimana
+    - cara tangani stroke
+    - apa yang harus dilakukan saat stroke
+    - gimana kalau stroke
+    - stroke harus diapain
+
+# ===== GOODBYE =====
+- intent: goodbye
+  examples: |
+    - terima kasih
+    - makasih
+    - sampai jumpa
+    - dadah
+    - bye
+    - selesai
+    - thanks
+    - oke terima kasih
+    - cukup
+    - sudah
+    - terimakasih
+    - ok makasih
+
+# ===== FALLBACK =====
+- intent: nlu_fallback
+  examples: |
+    - asdasdasd
+    - tidak jelas
+    - ????
+    - hah
+    - apa
+    - gak ngerti
+    - wkwkwk
+    - zzz

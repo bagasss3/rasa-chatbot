@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Rasa Server
+  rasa:
+    build: .
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      # Telegram Configuration
+      - TELEGRAM_ACCESS_TOKEN=${TELEGRAM_ACCESS_TOKEN}
+      - TELEGRAM_VERIFY=${TELEGRAM_VERIFY:-STROBO17_bot}
+      - TELEGRAM_WEBHOOK_URL=${TELEGRAM_WEBHOOK_URL}
+      
+      # Twilio Configuration
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_NUMBER=${TWILIO_NUMBER:-whatsapp:+14155238886}
+      
+      # Railway auto-provides these
+      - RAILWAY_PUBLIC_DOMAIN=${RAILWAY_PUBLIC_DOMAIN}
+      - RAILWAY_STATIC_URL=${RAILWAY_STATIC_URL}
+      
+      # Rasa Configuration
+      - RASA_URL=${RASA_URL:-http://localhost:5002/api}
+    command: >
+      sh -c "python3 setup_credentials.py &&
+             rasa run --enable-api --cors '*' --port 5005"
+    depends_on:
+      - actions
+    networks:
+      - rasa-network
+
+  # Action Server
+  actions:
+    build: .
+    ports:
+      - "5055:5055"
+    volumes:
+      - ./actions:/app/actions
+    command: rasa run actions --port 5055
+    networks:
+      - rasa-network
+
+networks:
+  rasa-network:
+    driver: bridge

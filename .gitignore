@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Rasa
+.rasa/
+results/
+*.db
+*.db-shm
+*.db-wal
+graph.html
+story_graph.dot
+
+# Environment Variables - SENSITIVE!
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Credentials - NEVER COMMIT!
+# credentials.yml will be auto-generated from environment variables
+# So we can commit the template, but not the actual file with secrets
+# credentials.yml
+
+# Models (optional - bisa di-commit atau tidak)
+# Kalau model besar, better train di local lalu upload manual
+# models/
+
+# Node modules (if any)
+node_modules/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+backup/
+temp/

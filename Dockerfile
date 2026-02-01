@@ -4,16 +4,14 @@ COPY . /app
 
 USER root
 RUN pip install rasa-sdk supervisor
-RUN pip install aiogram==2.25.2 --no-deps --force-reinstall  # Ignore dependency checks
-
-# Verify it didn't break rasa
-RUN rasa --version
 
 RUN rasa train
 USER 1001
 
-# Copy supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+ENV SANIC_NO_UVLOOP=true
+ENV SANIC_NO_UJSON=true
 EXPOSE 5005
+
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
